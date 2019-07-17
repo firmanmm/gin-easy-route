@@ -47,7 +47,6 @@ func (g *graph) AddMiddleware(paths []string, data *middleware) {
 func (g *graph) Parse(routes map[string]*route, middlewares []*middleware) {
 	for _, route := range routes {
 		param := strings.Split(route.url, "/")
-		param[0] = "/"
 		if param[1] == "" {
 			param = param[:1]
 		}
@@ -55,6 +54,9 @@ func (g *graph) Parse(routes map[string]*route, middlewares []*middleware) {
 	}
 	for _, middleware := range middlewares {
 		param := strings.Split(middleware.url, "/")
+		if param[1] == "" {
+			param = param[:1]
+		}
 		g.AddMiddleware(param, middleware)
 	}
 }

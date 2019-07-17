@@ -8,4 +8,4 @@ go get github.com/firmanmm/gin-easy-route
 ```
 
 ## Usage
-Please see [Example](example/main.go) for how to use it.
+Please see [Example](example) for how to use it.
