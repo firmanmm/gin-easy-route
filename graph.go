@@ -1,7 +1,6 @@
 package gineasyroute
 
 import (
-	"log"
 	"strings"
 )
 
@@ -37,7 +36,9 @@ func (g *graph) AddMiddleware(paths []string, data *middleware) {
 		path = paths[1]
 		node, ok := g.childs[path]
 		if !ok {
-			log.Panicln("Trying to add middleware on unused route : " + data.url)
+			node = newGraph()
+			node.path = path
+			g.childs[path] = node
 		}
 		node.AddMiddleware(paths[1:], data)
 	}
